@@ -11,7 +11,6 @@ class RegisterView(FormView):
     template_name = 'profiles/register.html'
     success_url = '/'
 
-    def post(self,form):
-        if form_valid:
-            form.save()
+    def form_valid(self,form):
+        form.save()
         return super(RegisterView,self).form_valid(form)
