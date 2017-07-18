@@ -1,0 +1,6 @@
+{% extends 'profiles/base.html' %}
+{% block title %}{{profile.username}} | {{block.super}}{% endblock %}
+{% block main %}
+<h1>User Profile Template</h1>
+{{profile.username}}
+{% endblock %}

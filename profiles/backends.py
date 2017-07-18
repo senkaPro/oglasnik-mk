@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 
 
+
 class DualAuthentication(ModelBackend):
 
     def authenticate(self,username=None,password=None):
@@ -24,12 +25,13 @@ class DualAuthentication(ModelBackend):
                 if user.check_password(password):
                     return user
             except:
-                UserModel.set_password(password)
                 return None
+
 
     def get_user(self,username):
         UserModel = get_user_model()
         try:
             return UserModel.objects.get(pk=username)
-        except UserModel.DoesNotExist:
+        except UserModel.DoesNotExist():
             return None
+        return user if self.user_can_authenticate(user) else None

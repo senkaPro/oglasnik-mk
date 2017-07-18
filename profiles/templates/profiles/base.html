@@ -1,4 +1,28 @@
 {% extends 'base.html' %}
+{% block title %}{{block.super}}{% endblock %}
+{% block profiles %}
+{% if user.is_authenticated %}
+  <li role="presentation" class="dropdown">{% block register %}
+    <a href='{% url 'profiles:base'  %}' class="dropdown-toggle" id='ProfileDD' data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+             <i class="fa fa-user-circle-o" style='font-size:130%;'aria-hidden="true"></i>
+             {{request.user.username}}  <span class="caret"></span></a>
+             <ul class="dropdown-menu" aria-labelledby="ProfileDD">
+                  <li><a href="{% url 'profiles:base'  %}">Profile</a></li>
+                  <li><a href="{% url 'profiles:base'  %}">Edit Profile</a></li>
+                  <li><a href="{% url 'profiles:base' %}">All Profiles</a></li>
+                  {% if user.is_authenticated and user.is_superuser %}
+                  <li><a href="admin/">Admin</a></li>
+                {% endif %}
+                  <li role="separator" class="divider"></li>
+                  <li><a href={% url 'profiles:logout' %}>Logout</a></li>
+             </ul>
+      {% endblock %}</li>
+  <li>{% block login %}<a href={% url 'profiles:logout' %}>Logout</a>{% endblock %}</li>
+{% else %}
+  <li {% block regis %}{% endblock %}><a href={% url 'profiles:register' %}>Register</a></li>
+  <li {% block logi %}{% endblock %}><a href={% url 'profiles:login' %}>Sign In</a></li>
+{% endif %}
+{% endblock %}
 {% block main %}
 <h1>Profiles Base Template</h1>
 {% endblock %}

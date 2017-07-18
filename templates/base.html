@@ -4,12 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}HOME VIEW{% endblock %}</title>
+  <title>{% block title %}Oglasnik.mk{% endblock %}</title>
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
   <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
         footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', sans-serif; }
@@ -39,7 +42,7 @@
          .copyright { min-height:40px; background-color:#000000;}
          .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
          .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
-         .post p { font-size:12px; color:#FFF; line-height:20px;}
+         .post p { font-size:14px; color:#FFF; line-height:20px;}
          .post p span { display:block; color:#8f8f8f;}
          .bottom_ul { list-style-type:none; float:right; margin-bottom:0px;}
          .bottom_ul li { float:left; line-height:40px;}
@@ -67,16 +70,8 @@
 
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
-              {% if user.is_authenticated %}
-                <li {% block reg_active %}{% endblock %}>{% block register %}
-                                                            <a href='/'><i class="fa fa-user-circle-o" style='font-size:130%;'aria-hidden="true">
-                                                            </i> {{request.user.username}}</a>
-                                                          {% endblock %}
-                <li {% block log_active %}{% endblock %}>{% block login %}<a href='/'>Logout</a>{% endblock %}</li>
-              {% else %}
-                <li><a href={% url 'profiles:register' %}>Register</a></li>
-                <li><a href='/'>Sign In</a></li>
-              {% endif %}
+              {% block profiles %}
+              {% endblock %}
             </ul>
         </div>
     </div>
@@ -91,11 +86,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-6 footerleft ">
-        <div class="logofooter"> Logo</div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-        <p><i class="fa fa-map-pin"></i> 210, Aggarwal Tower, Rohini sec 9, New Delhi -        110085, INDIA</p>
-        <p><i class="fa fa-phone"></i> Phone (India) : +91 9999 878 398</p>
-        <p><i class="fa fa-envelope"></i> E-mail : info@webenlance.com</p>
+        <div class="logofooter"> Oglasnik.mk</div>
+        <p>Prva oglasuvacka platforma vo makedonija koja mozete da ja modificirate sprema vasite potrebi,ne gubete vreme,prasajte na Oglasnik</p>
+        <p><i class="fa fa-map-pin"></i> 210,  Marks Engels 30/1 , Struga - 6330, Makedonija</p>
+        <p><i class="fa fa-phone"></i> Phone (India) : +89 70 878 398</p>
+        <p><i class="fa fa-envelope"></i> E-mail : info@oglasnik.mk</p>
       </div>
       <div class="col-md-2 col-sm-6 paddingtop-bottom">
         <h6 class="heading7">GENERAL LINKS</h6>
@@ -109,15 +104,17 @@
           <li><a href="#"> Frequently Ask Questions</a></li>
         </ul>
       </div>
-      <div class="col-md-3 col-sm-6 paddingtop-bottom">
+      <div class="col-md-4 paddingtop-bottom">
         <h6 class="heading7">LATEST POST</h6>
         <div class="post">
-          <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p>
-          <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p>
-          <p>facebook crack the movie advertisment code:what it means for you <span>August 3,2015</span></p>
+          {% if users %}
+          {% for user in users %}
+          <p>{{user.username}}<span>{{user.date_joined}}</span></p>
+          {% endfor %}
+          {% endif %}
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 paddingtop-bottom">
+      <div class="col-md-2 col-sm-6 paddingtop-bottom">
         <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
           <div class="fb-xfbml-parse-ignore">
             <blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote>

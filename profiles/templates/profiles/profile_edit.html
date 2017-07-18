@@ -1,16 +1,16 @@
 {% extends 'profiles/base.html' %}
-{% block title %}Sign Up | {{block.super}}{% endblock %}
-{% block regis %}class='active'{% endblock %}
-
+{% block title %}{{user.username}} - Edit Profile{% endblock %}
 {% block main %}
 
+
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   <div class="panel panel-login">
   <div class="panel-heading">
     <div class="row">
-      <div class="col-xs-6">
-        <h3 id="register-form-link">Create New Account</h3>
+      <div class="col-xs-8">
+        <h5>Edit Profile:</h5>
+        <h3 id="register-form-link">{{user.username}}</h3>
       </div>
     </div>
     <hr>
@@ -18,7 +18,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-12">
-        <form id="register-form" action={% url 'profiles:register' %} method="post" role="form" style="display: block;">
+        <form id="profile-form" action={% url 'profiles:edit' %} method="post" role="form" style="display: block;">
           {% csrf_token %}
           {% if form.non_field_errors %}
           <div class="alert alert-danger alert-dismissible" role="alert">
@@ -35,27 +35,21 @@
           {% endif %}
           {% endfor %}
           <div class="form-group">
-            <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="your-email@example.com" value="">
+            <input type="text" name="screen_name" id="id_screen_name" tabindex="1" class="form-control" placeholder="Name you want appear on our website" value="">
           </div>
           <div class="form-group">
-            <input type="password" name="password1" id="password" tabindex="2" class="form-control" placeholder="Choose a password">
+            <input type="text" name="location" id="id_location" tabindex="2" class="form-control" placeholder="Your location">
           </div>
           <div class="form-group">
-            <input type="password" name="password2" id="password" tabindex="2" class="form-control" placeholder="Confirm your password">
+            <input type="number" name="adds_added" id="id_adds_added" tabindex="2" class="form-control" placeholder="Your adds count">
           </div>
           <div class="form-group">
-            <div class="row">
-              <div class="col-sm-6 col-sm-offset-3">
-                <input type="submit" name="submit" id="register-submit" tabindex="4" class="form-control btn btn-primary" value="Sign Up">
-              </div>
-            </div>
+            <input type="file" name="profile_pic" id="id_profile_pic" tabindex="2" class="form-control" placeholder='Upload Image'>
           </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-lg-12">
-                <div class="text-center">
-                  <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
-                </div>
+              <div class="col-sm-8 col-sm-offset-2">
+                <input type="submit" name="submit" id="register-submit" tabindex="4" class="form-control btn btn-primary" value="Save">
               </div>
             </div>
           </div>
@@ -66,12 +60,4 @@
 </div>
 </div>
 </div>
-<!--
-<form method="post">
-{% csrf_token %}
-{{form.as_table}}
-<button class='btn btn-info' type='submit' value='Sign Up'>Sign Up</button>
-</form>
--->
-
 {% endblock %}

@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager as Manager
 from django.db import models
-
+from PIL import Image
 
 
 class UserManager(Manager):
@@ -41,7 +41,7 @@ class UserManager(Manager):
 
 class User(AbstractUser):
 
-    username = models.CharField(max_length=30,blank=True)
+    username = models.CharField(max_length=30,unique=True)
     email = models.EmailField('Email Address',unique=True,blank=False,null=False)
 
     USERNAME_FIELD  = 'email'
@@ -49,8 +49,16 @@ class User(AbstractUser):
 
     objects = UserManager()
 
-    
+
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,editable=False)
+    screen_name = models.CharField(max_length=30,blank=True,null=True)
+    location = models.CharField(max_length=30,blank=True,null=True)
+    adds_added = models.IntegerField(default=0)
+    profile_pic = models.ImageField(upload_to=settings.MEDIA_URL)
+
+
+    def __str__(self):
+        return self.user.username
