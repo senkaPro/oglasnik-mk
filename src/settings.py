@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.path.join(BASE_DIR, 'postgresql'),
         'DATABASE': 'da7to7pehphppj',
         'HOST': 'ec2-46-137-117-43.eu-west-1.compute.amazonaws.com',
