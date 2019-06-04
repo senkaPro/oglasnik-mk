@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME' : os.path.join(BASE_DIR,'oglasnikmk'),        
         'HEROKU':{
             'NAME': 'dm2ubueg46cur',
