@@ -12,14 +12,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-from django.core.wsgi import get_wsgi_application
-from whitenoise import WhiteNoise
-
-
-application = get_wsgi_application()
-application = WhiteNoise(application)
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings")
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -85,9 +77,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-               default=config('DATABASE_URL')
-        )
+    'default': dj_database_url.config(conn_max_age=600),
 }
 
 
@@ -137,4 +127,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
