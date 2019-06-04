@@ -76,16 +76,11 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME' : os.path.join(BASE_DIR,'oglasnikmk'),        
-        'HEROKU':{
-            'NAME': 'dm2ubueg46cur',
-        },
-    }
+    'default': dj_database_url.config(
+               default=config('DATABASE_URL')
+        )
 }
-db_from_env = dj_database_url.config(default='postgres://uywfgscwuvxcyr:4d98e73ca284fbbb04774b70b572c415f80320cacf3e99acc76789d22df1e40e@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/dm2ubueg46cur' ,conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
