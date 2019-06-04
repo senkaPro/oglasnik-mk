@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'profiles',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,11 +77,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'ec2-54-247-70-127.eu-west-1.compute.amazonaws.com',
-        'NAME': 'dos1v7soml0u8',
-        'USER': 'krjdgnjlawskdu',
-        'PASSWORD': '9026fd33dd00b1afb54af84442112cd3abfd91daebc98427a3c612d381dfc440',
-        'PORT': 5432,        
+        'NAME' : os.path.join(BASE_DIR,'oglasnikmk'),        
     }
 }
 
