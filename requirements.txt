@@ -3,3 +3,4 @@ gunicorn
 pytz==2017.2
 psycopg2
 Pillow
+dj-database-url
