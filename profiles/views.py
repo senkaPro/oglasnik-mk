@@ -16,7 +16,6 @@ class BaseView(TemplateView):
 
     def get(self,request,*args,**kwargs):
         template_name = 'profiles/base.html'
-        User = get_user_model()
         qs = User.objects.all().order_by('-date_joined')[:5]
         return render(request,template_name,{'users':qs})
 
