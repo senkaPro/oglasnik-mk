@@ -53,7 +53,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,editable=False)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,editable=False)
     screen_name = models.CharField(max_length=30,blank=True,null=True)
     location = models.CharField(max_length=30,blank=True,null=True)
     adds_added = models.IntegerField(default=0)
